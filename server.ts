@@ -1,13 +1,22 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
+import "./core/db";
+
+import { UserCtrl } from "./controllers/UserController";
+import { registerValidations } from "./validations/register";
 
 const app = express();
 
-app.get("/hello", (_, res: express.Response) => {
-  res.send("Salam");
-});
+app.use(express.json());
 
-app.get("/users");
+app.get("/users", UserCtrl.index);
+app.post("/users", registerValidations, UserCtrl.create);
+app.get("/users/verify", UserCtrl.verify);
+// app.patch("/users", UserCtrl.update);
+// app.delete('/users', UserCtrl.delete);
 
-app.listen(8888, () => {
+app.listen(process.env.PORT, () => {
   console.log("SERVER RUNNING!");
 });
