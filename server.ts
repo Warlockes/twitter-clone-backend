@@ -15,6 +15,9 @@ const app = express();
 app.use(express.json());
 app.use(passport.initialize());
 
+//TODO:
+// 1) Сделать кастомный мидлваре, который проверяет авторизацию пользователя и валидность id твита - DRY в TweetController
+
 app.get("/users", UserCtrl.index);
 app.get(
   "/users/me",
@@ -32,7 +35,12 @@ app.post(
   TweetsCtrl.create
 );
 app.delete("/tweets/:id", passport.authenticate("jwt"), TweetsCtrl.delete);
-// app.patch("/tweets/:id", TweetsCtrl.update);
+app.patch(
+  "/tweets/:id",
+  passport.authenticate("jwt"),
+  createTweetValidations,
+  TweetsCtrl.update
+);
 
 app.get("/auth/verify", registerValidations, UserCtrl.verify);
 app.post("/auth/signup", registerValidations, UserCtrl.create);

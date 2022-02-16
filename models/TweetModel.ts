@@ -9,17 +9,20 @@ export interface ITweetModel {
 
 export type ITweetModelDocument = ITweetModel & Document;
 
-const TweetSchema = new Schema<ITweetModel>({
-  text: {
-    reuqired: true,
-    type: String,
-    maxlength: 280,
+const TweetSchema = new Schema<ITweetModel>(
+  {
+    text: {
+      reuqired: true,
+      type: String,
+      maxlength: 280,
+    },
+    user: {
+      reuqired: true,
+      ref: "User",
+      type: Schema.Types.ObjectId,
+    },
   },
-  user: {
-    reuqired: true,
-    ref: "User",
-    type: Schema.Types.ObjectId,
-  },
-});
+  { timestamps: true }
+);
 
 export const TweetModel = model<ITweetModelDocument>("Tweet", TweetSchema);

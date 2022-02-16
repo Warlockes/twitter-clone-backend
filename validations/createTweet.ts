@@ -4,7 +4,10 @@ export const createTweetValidations = [
   body("text", "Введите текст твита")
     .isString()
     .isLength({
+      min: 1,
       max: 280,
     })
-    .withMessage("Максимальная длина твита 280 символов"),
+    .withMessage(
+      "Введите текст твита.\nМаксимальное количество символов - 280"
+    ),
 ];
