@@ -64,7 +64,7 @@ class UserController {
         fullname: req.body.fullname,
         password: generateMD5(req.body.password + process.env.SECRET_KEY),
         confirmHash: generateMD5(
-          process.env.SECRET_KEY || Math.random().toString()
+          req.body.username + process.env.SECRET_KEY || req.body.username
         ),
       };
 

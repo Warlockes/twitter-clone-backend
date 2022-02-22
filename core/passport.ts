@@ -17,6 +17,10 @@ passport.use(
         return done(null, false, { message: "Неверный логин или e-mail" });
       }
 
+      if (!user.confirmed) {
+        return done(null, false, { message: "Подтвердите почту" });
+      }
+
       if (user.password === generateMD5(password + process.env.SECRET_KEY)) {
         done(null, user);
       } else {
