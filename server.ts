@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import multer from "multer";
 import { passport } from "./core/passport";
 import "./core/db";
 
@@ -9,8 +10,11 @@ import { UserCtrl } from "./controllers/UserController";
 import { TweetsCtrl } from "./controllers/TweetsController";
 import { registerValidations } from "./validations/register";
 import { createTweetValidations } from "./validations/createTweet";
+import { UploadFileCtrl } from "./controllers/UploadFileController";
 
 const app = express();
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 app.use(express.json());
 app.use(passport.initialize());
@@ -47,6 +51,8 @@ app.post("/auth/signup", registerValidations, UserCtrl.create);
 app.post("/auth/signin", passport.authenticate("local"), UserCtrl.afterLogin);
 // app.patch("/users", UserCtrl.update);
 // app.delete('/users', UserCtrl.delete);
+
+app.post("/upload", upload.single("avatar"), UploadFileCtrl.upload);
 
 app.listen(process.env.PORT, () => {
   console.log("SERVER RUNNING!");
