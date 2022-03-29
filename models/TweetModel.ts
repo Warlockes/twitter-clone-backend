@@ -4,6 +4,7 @@ import { IUserModel } from "./UserModel";
 export interface ITweetModel {
   _id?: string;
   text: string;
+  images?: string[];
   user: IUserModel;
 }
 
@@ -21,6 +22,11 @@ const TweetSchema = new Schema<ITweetModel>(
       ref: "User",
       type: Schema.Types.ObjectId,
     },
+    images: [
+      {
+        type: String,
+      },
+    ],
   },
   { timestamps: true }
 );

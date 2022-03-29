@@ -76,6 +76,7 @@ class TweetsController {
 
         const data: ITweetModel = {
           text: req.body.text,
+          images: req.body.images,
           user,
         };
 

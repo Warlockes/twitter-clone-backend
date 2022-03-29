@@ -52,7 +52,7 @@ app.post("/auth/signin", passport.authenticate("local"), UserCtrl.afterLogin);
 // app.patch("/users", UserCtrl.update);
 // app.delete('/users', UserCtrl.delete);
 
-app.post("/upload", upload.single("avatar"), UploadFileCtrl.upload);
+app.post("/upload", upload.single("image"), UploadFileCtrl.upload);
 
 app.listen(process.env.PORT, () => {
   console.log("SERVER RUNNING!");
