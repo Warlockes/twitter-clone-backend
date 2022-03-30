@@ -32,6 +32,7 @@ app.get("/users/:id", UserCtrl.show);
 
 app.get("/tweets", TweetsCtrl.index);
 app.get("/tweets/:id", TweetsCtrl.show);
+app.get("/tweets/user/:id", TweetsCtrl.getUserTweets);
 app.post(
   "/tweets",
   passport.authenticate("jwt"),

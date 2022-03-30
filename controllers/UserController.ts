@@ -32,7 +32,7 @@ class UserController {
         });
       }
 
-      const user = await UserModel.findById(userId).exec();
+      const user = await UserModel.findById(userId).populate("tweets").exec();
 
       if (!user) {
         res.status(404).json({
