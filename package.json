@@ -34,5 +34,8 @@
     "start": "node dist/server.js",
     "dev": "ts-node server.ts",
     "nodemon": "nodemon"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12"
   }
 }
