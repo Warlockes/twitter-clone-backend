@@ -75,9 +75,7 @@ class UserController {
           emailFrom: "admin@twitter.com",
           emailTo: data.email,
           subject: "Подтверждение почты Twitter Clone Tutorial",
-          html: `Для того, чтобы подтвердить почту, перейдите <a href="http://localhost:${
-            process.env.PORT || 8888
-          }/auth/verify?hash=${data.confirmHash}">по этой ссылке</a>`,
+          html: `Для того, чтобы подтвердить почту, перейдите <a href="https://alex-twitter-clone-backend.herokuapp.com/auth/verify?hash=${data.confirmHash}">по этой ссылке</a>`,
         },
         (err: Error | null) => {
           if (err) {
