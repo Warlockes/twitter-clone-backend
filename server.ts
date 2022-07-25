@@ -13,6 +13,7 @@ import { createTweetValidations } from "./validations/createTweet";
 import { UploadFileCtrl } from "./controllers/UploadFileController";
 
 const app = express();
+const port = process.env.PORT || 3000;
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -55,6 +56,6 @@ app.post("/auth/signin", passport.authenticate("local"), UserCtrl.afterLogin);
 
 app.post("/upload", upload.single("image"), UploadFileCtrl.upload);
 
-app.listen(process.env.PORT, () => {
-  console.log("SERVER RUNNING!");
+app.listen(port, () => {
+  console.log(`SERVER RUNNING! PORT => ${port}`);
 });
