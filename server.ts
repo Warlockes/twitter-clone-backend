@@ -3,6 +3,7 @@ dotenv.config();
 
 import express from "express";
 import multer from "multer";
+import cors from "cors";
 import { passport } from "./core/passport";
 import "./core/db";
 
@@ -17,6 +18,7 @@ const port = process.env.PORT || 3000;
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
